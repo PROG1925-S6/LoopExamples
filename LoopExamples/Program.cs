@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -75,7 +76,7 @@ namespace LoopExamples
             bool keepGoing = true;
             int loopCounter = 0;
 
-            while(keepGoing)
+            while (keepGoing) 
             {
                 Console.Write("Do you want to keep counting? (y/n)");
                 string userAnswer = Console.ReadLine(); 
@@ -98,7 +99,69 @@ namespace LoopExamples
 
             Console.WriteLine("That was fun");
 
+            //1. Counting with do while
+            Console.WriteLine();
+
+            int startingNumber = 5;
+
+            do
+            {
+                Console.Write($"{startingNumber} ");
+                startingNumber++;
+            } while (startingNumber <= 10);
+
+
+            //2. Create a menu system.
+            Console.WriteLine();
+
+            string choice;
+
+            do
+            {
+                Console.WriteLine("Please select an option");
+                Console.WriteLine("1. Display values between 1 and 5");
+                Console.WriteLine("2. Find Area of a Rectangle");
+                Console.WriteLine("3. Exit");
+                choice = Console.ReadLine();    
+
+                if (choice =="1")
+                {
+                    for(int i = 1; i <= 5; i++)
+                    {
+                        Console.Write($"{i} ");
+                    }
+                }
+                else if (choice == "2")
+                {
+                    int length, width, area;
+
+                    Console.Write("Enter a length: ");
+                    length = Convert.ToInt16(Console.ReadLine());
+
+                    Console.Write("Enter a width: ");
+                    width = Convert.ToInt16(Console.ReadLine());
+
+                    area = RectangleArea(length, width);
+                    Console.WriteLine($"The area is : {area} units^2");
+                }
+
+                Console.WriteLine();
+
+            } while (choice != "3");
+
             Console.ReadKey();
+        }
+
+        /// <summary>
+        /// Calculate the area of a rectangle
+        /// </summary>
+        /// <param name="length">The length of the rectangle</param>
+        /// <param name="width">The width of the rectangle</param>
+        /// <returns>returns the area as an integer</returns>
+        static int RectangleArea(int length, int width)
+        {
+            int area = length * width;
+            return area;
         }
     }
 }
